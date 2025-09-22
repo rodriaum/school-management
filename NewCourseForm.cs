@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GestaoEscolaAula
+namespace SchoolManagement
 {
-    public partial class Form1 : Form
+    public partial class NewCourseForm : Form
     {
-        public Form1()
+        public NewCourseForm()
         {
             InitializeComponent();
         }

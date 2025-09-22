@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagement;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -32,6 +33,20 @@ namespace GestaoEscolaAula
             {
                 string FileName = openFileDialog.FileName;
             }
+        }
+
+        private void listarCursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListCourseForm form = new ListCourseForm();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void inserirCursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewCourseForm form = new NewCourseForm();
+            form.MdiParent = this;
+            form.Show();
         }
     }
 }
