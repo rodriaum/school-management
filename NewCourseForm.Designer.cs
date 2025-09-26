@@ -35,16 +35,18 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.subStatusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Bodoni MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold);
             this.titleLabel.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.titleLabel.Location = new System.Drawing.Point(127, 52);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(225, 34);
+            this.titleLabel.Size = new System.Drawing.Size(258, 33);
             this.titleLabel.TabIndex = 5;
             this.titleLabel.Text = "INSERIR CURSO";
             // 
@@ -59,6 +61,7 @@
             this.sendButton.Size = new System.Drawing.Size(50, 50);
             this.sendButton.TabIndex = 4;
             this.sendButton.UseVisualStyleBackColor = false;
+            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
             // nameTextBox
             // 
@@ -71,6 +74,7 @@
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.nameLabel.Location = new System.Drawing.Point(130, 89);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(80, 13);
@@ -95,11 +99,35 @@
             this.descriptionTextBox.Size = new System.Drawing.Size(541, 188);
             this.descriptionTextBox.TabIndex = 8;
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusLabel.ForeColor = System.Drawing.Color.DarkGreen;
+            this.statusLabel.Location = new System.Drawing.Point(135, 362);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 20);
+            this.statusLabel.TabIndex = 11;
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // subStatusLabel
+            // 
+            this.subStatusLabel.AutoSize = true;
+            this.subStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subStatusLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.subStatusLabel.Location = new System.Drawing.Point(136, 382);
+            this.subStatusLabel.Name = "subStatusLabel";
+            this.subStatusLabel.Size = new System.Drawing.Size(0, 13);
+            this.subStatusLabel.TabIndex = 12;
+            this.subStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // NewCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.subStatusLabel);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.nameLabel);
@@ -121,5 +149,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Label subStatusLabel;
     }
 }
