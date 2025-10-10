@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace SchoolManagement
 {
-    public partial class ListCourseForm : Form
+    public partial class ListStudentForm : Form
     {
         private SqlService _sqlService;
 
@@ -15,7 +15,7 @@ namespace SchoolManagement
 
         private int delayTime = 5;
 
-        public ListCourseForm(SqlService sqlService)
+        public ListStudentForm(SqlService sqlService)
         {
             InitializeComponent();
 
@@ -65,21 +65,21 @@ namespace SchoolManagement
 
                 int rows = 0;
 
-                foreach (DataGridViewRow row in coursesDataGridView.SelectedRows)
+                foreach (DataGridViewRow row in studentsDataGridView.SelectedRows)
                 {
-                    DataGridViewCell courseCell = row.Cells["curso_id"];
+                    DataGridViewCell studentCell = row.Cells["aluno_id"];
 
-                    if (!row.IsNewRow && courseCell != null)
-                        rows += await this.DeleteLine(Convert.ToInt32(courseCell.Value));
+                    if (!row.IsNewRow && studentCell != null)
+                        rows += await this.DeleteLine(Convert.ToInt32(studentCell.Value));
                 }
 
                 if (rows > 0)
                 {
-                    this.Log($"'{rows}' curso(s) eliminado(s) com sucesso.", Color.Green);
+                    this.Log($"'{rows}' aluno(s) eliminado(s) com sucesso.", Color.Green);
                 }
                 else
                 {
-                    this.Log($"Nenhum curso encontrado ou eliminado.", Color.Red);
+                    this.Log($"Nenhum aluno encontrado ou eliminado.", Color.Red);
                 }
 
                 await this.RefreshTable();
@@ -91,17 +91,30 @@ namespace SchoolManagement
             }
         }
 
-        private void coursesDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void studentsDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > 0)
             {
-                DataGridViewRow selected = coursesDataGridView.Rows[e.RowIndex];
+                DataGridViewRow selected = studentsDataGridView.Rows[e.RowIndex];
 
-                int courseId = Convert.ToInt32(selected.Cells["curso_id"].Value);
-                string courseName = selected.Cells["nome_curso"].Value.ToString();
-                string courseDescription = selected.Cells["descricao_curso"].Value.ToString();
+                int id = Convert.ToInt32(selected.Cells["aluno_id"].Value);
+                string name = selected.Cells["nome_aluno"].Value.ToString();
+                string email = selected.Cells["email"].Value.ToString();
+                string phone = selected.Cells["telefone"].Value.ToString();
+                string birthT = selected.Cells["data_nascimento"].Value.ToString();
 
-                UpdateCourseForm form = new UpdateCourseForm(this._sqlService, courseId, courseName, courseDescription);
+                // birth can be null
+                DateTime.TryParse(birthT, out DateTime birth);
+
+                // birth is always null in constructor
+                UpdateStudentForm form = new UpdateStudentForm(
+                    this._sqlService,
+                    id: id,
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    birth: birth
+                );
 
                 form.Show();
                 form.FormClosed += async (s, args) => await this.RefreshTable();
@@ -109,11 +122,11 @@ namespace SchoolManagement
             }
         }
 
-        private async Task<int> DeleteLine(int cursoId)
+        private async Task<int> DeleteLine(int id)
         {
             try
             {
-                int rows = await _sqlService.DeleteCourse(cursoId);
+                int rows = await _sqlService.DeleteStudent(id);
 
                 if (rows > 0)
                 {
@@ -133,16 +146,16 @@ namespace SchoolManagement
         {
             try
             {
-                DataTable data = await _sqlService.DataTableFromCourses();
+                DataTable data = await _sqlService.DataTableFromStudents();
 
-                coursesDataGridView.DataSource = data;
-                coursesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                coursesDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                studentsDataGridView.DataSource = data;
+                studentsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                studentsDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-                coursesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                coursesDataGridView.MultiSelect = true;
-                coursesDataGridView.ReadOnly = true;
-                coursesDataGridView.AllowUserToAddRows = false;
+                studentsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                studentsDataGridView.MultiSelect = true;
+                studentsDataGridView.ReadOnly = true;
+                studentsDataGridView.AllowUserToAddRows = false;
 
                 return true;
             }

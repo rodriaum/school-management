@@ -31,13 +31,18 @@
             this.components = new System.ComponentModel.Container();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.alunosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.turmasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarCursoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inserirCursoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.statusTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -56,15 +61,49 @@
             // 
             // alunosToolStripMenuItem
             // 
+            this.alunosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4});
             this.alunosToolStripMenuItem.Name = "alunosToolStripMenuItem";
             this.alunosToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.alunosToolStripMenuItem.Text = "Alunos";
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Text = "Listar Alunos";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Text = "Inserir Aluno";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
             // turmasToolStripMenuItem
             // 
+            this.turmasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
             this.turmasToolStripMenuItem.Name = "turmasToolStripMenuItem";
             this.turmasToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.turmasToolStripMenuItem.Text = "Turmas";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "Listar Turmas";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Text = "Inserir Turma";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // cursosToolStripMenuItem
             // 
@@ -78,14 +117,14 @@
             // listarCursoToolStripMenuItem
             // 
             this.listarCursoToolStripMenuItem.Name = "listarCursoToolStripMenuItem";
-            this.listarCursoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.listarCursoToolStripMenuItem.Text = "Listar Curso";
+            this.listarCursoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listarCursoToolStripMenuItem.Text = "Listar Cursos";
             this.listarCursoToolStripMenuItem.Click += new System.EventHandler(this.listarCursoToolStripMenuItem_Click);
             // 
             // inserirCursoToolStripMenuItem
             // 
             this.inserirCursoToolStripMenuItem.Name = "inserirCursoToolStripMenuItem";
-            this.inserirCursoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.inserirCursoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inserirCursoToolStripMenuItem.Text = "Inserir Curso";
             this.inserirCursoToolStripMenuItem.Click += new System.EventHandler(this.inserirCursoToolStripMenuItem_Click);
             // 
@@ -104,6 +143,12 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
+            // 
+            // statusTimer
+            // 
+            this.statusTimer.Enabled = true;
+            this.statusTimer.Interval = 1000;
+            this.statusTimer.Tick += new System.EventHandler(this.statusTimer_Tick);
             // 
             // MenuMDIParent
             // 
@@ -137,6 +182,11 @@
         private System.Windows.Forms.ToolStripMenuItem cursosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarCursoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inserirCursoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.Timer statusTimer;
     }
 }
 
